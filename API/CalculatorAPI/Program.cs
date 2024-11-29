@@ -14,6 +14,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseUrls("https://0.0.0.0:44300", "http://0.0.0.0:5000"); // Bind to all IPs
 
+// Default HTTPS settings, if not set yet
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    // Listen on the specified port for HTTPS
+    serverOptions.ListenLocalhost(44300, listenOptions =>
+    {
+        listenOptions.UseHttps();  // Ensure HTTPS is enabled
+    });
+});
+
+
 builder.Services.AddCors();
 builder.Services.AddHealthChecks();
 
@@ -39,7 +50,10 @@ builder.Services.AddSwaggerGen();
 // Add general services
 // Logger
 builder.Services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
-builder.Services.AddScoped<IFileLogWriterService, FileLogWriterServiceService>();
+
+// File log
+builder.Services.AddScoped<IFileLogWriterService, FileLogWriterService>();
+builder.Services.AddScoped<IFileSystemService, FileSystemService>();
 
 // Add repositories
 builder.Services.AddScoped<ICalculateProbabilityRepository, CalculateProbabilityRepository>();

@@ -2,7 +2,7 @@ using CalculatorAPI.Data.Interfaces.Services;
 
 namespace CalculatorAPI.Business.Services.General;
 
-public class FileLogWriterServiceService(IFileSystemService fileSystemService) : IFileLogWriterService
+public class FileLogWriterService(IFileSystemService fileSystemService) : IFileLogWriterService
 {
     public async Task WriteLogAsync(string message)
     {

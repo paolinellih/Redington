@@ -5,14 +5,14 @@ using Xunit;
 
 namespace CalculatorAPI.UnitTests.Business.Services.General;
 
-public class FileLogWriterServiceServiceTests 
+public class FileLogWriterServiceTests 
 {
     private readonly Mock<IFileSystemService> _fileSystemServiceMock = new();
 
     // CreateInstance method to instantiate FileLogWriterServiceService with mocks
-    private FileLogWriterServiceService CreateInstance()
+    private FileLogWriterService CreateInstance()
     {
-        return new FileLogWriterServiceService(_fileSystemServiceMock.Object);
+        return new FileLogWriterService(_fileSystemServiceMock.Object);
     }
 
     // This test verifies that WriteLogAsync behaves correctly when no exception occurs
