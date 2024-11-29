@@ -1,13 +1,8 @@
 using CalculatorAPI.Business.Services.Process.Calculator;
-using CalculatorAPI.Business.Validators.Calculator;
-using CalculatorAPI.Data.Enums;
-using CalculatorAPI.Data.Exceptions;
-using CalculatorAPI.Data.Interfaces.Repositories;
+using CalculatorAPI.Data.Interfaces.Factories;
 using CalculatorAPI.Data.Interfaces.Services;
-using CalculatorAPI.Data.Requests.Calculator;
 using CalculatorAPI.Data.Responses;
 using CalculatorAPI.Data.Responses.Calculator;
-using FluentValidation;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -17,17 +12,17 @@ namespace CalculatorAPI.UnitTests.Business.Services.Process.Calculator;
 public class GetProbabilityTypeServiceTests
 {
     private readonly Mock<ILogger<GetProbabilityTypeService>> _loggerMock = new();
-    private readonly Mock<ICalculateProbabilityRepository> _calculateProbabilityRepositoryMock = new();
+    private readonly Mock<IProbabilityCalculatorFactory> _probabilityCalculatorFactoryMock = new();
     private GetProbabilityTypeService CreateInstance()
     {
-        return new GetProbabilityTypeService(_loggerMock.Object, _calculateProbabilityRepositoryMock.Object);
+        return new GetProbabilityTypeService(_loggerMock.Object, _probabilityCalculatorFactoryMock.Object);
     }
 
     [Fact]
     public async Task NoContentFoundException_ErrorProcessingRequest_DefaultErrorMessage()
     {
         // Arrange
-        _calculateProbabilityRepositoryMock.Setup(r => r.GetProbabilityTypes()).Returns((IEnumerable<ProbabilityTypeDto>)null);
+        _probabilityCalculatorFactoryMock.Setup(r => r.GetAllCalculators()).Returns((IEnumerable<IProbabilityCalculator>)null);
         
         // Act
         var service = CreateInstance();
@@ -45,13 +40,10 @@ public class GetProbabilityTypeServiceTests
     public async Task GetProbabilityTypes_ShouldReturnAllProbabilityTypes()
     {
         // Arrange
-        _calculateProbabilityRepositoryMock.Setup(r => r.GetProbabilityTypes()).Returns(new List<ProbabilityTypeDto>
+        _probabilityCalculatorFactoryMock.Setup(r => r.GetAllCalculators()).Returns(new List<IProbabilityCalculator>
         {
-            new ProbabilityTypeDto
-            {
-                Value = 1,
-                Name = "Type 1"
-            }
+            new CombinedWithCalculator(),
+            new EitherCalculator(),
         });
         
         // Act
@@ -62,6 +54,6 @@ public class GetProbabilityTypeServiceTests
         Assert.NotNull(result);
         var response = Assert.IsType<GetProbabilityTypeResponse>(result.Response);
         Assert.True(response.Successful);
-        Assert.Equal(1, response.Result.FirstOrDefault()!.Value);
+        Assert.Equal("Combined With", response.Result.FirstOrDefault()!.Value);
     }
 }

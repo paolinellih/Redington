@@ -1,6 +1,6 @@
 namespace CalculatorAPI.Data.Interfaces.Services;
 
-public interface ILogFileWriter
+public interface IFileLogWriterService
 {
     Task WriteLogAsync(string message);
 }

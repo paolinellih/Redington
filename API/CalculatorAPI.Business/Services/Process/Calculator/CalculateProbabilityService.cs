@@ -13,7 +13,7 @@ namespace CalculatorAPI.Business.Services.Process.Calculator;
 public class CalculateProbabilityService(
     ILogger<CalculateProbabilityService> logger,
     IProbabilityCalculatorFactory calculatorFactory,
-    ILogFileWriter logFileWriter)
+    IFileLogWriterService fileLogWriterService)
     : HttpBaseProcessService<CalculateProbabilityService>(logger, new CalculateProbabilityRequestValidator())
 {
     protected override async Task<HttpProcessResult> InternalProcess(IRequest baseRequest = null)
@@ -40,19 +40,8 @@ public class CalculateProbabilityService(
                          $"Inputs: A={request.A}, B={request.B}, " +
                          $"Result: {result}";
         
-        // Just logs it. No need to wait for return value
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                await logFileWriter.WriteLogAsync(logMessage);
-            }
-            catch (Exception ex)
-            {
-                Logger.LogWarning(ex, "Failed to write log: {Message}", logMessage);
-                // Optionally: Add information to a monitoring system
-            }
-        });
+        // Call the write log messege
+        await WriteLogAsync(logMessage);
 
         // Build the response and status code
         return new HttpProcessResult
@@ -63,5 +52,17 @@ public class CalculateProbabilityService(
                 Successful = true
             }
         };
+    }
+    
+    public async Task WriteLogAsync(string logMessage)
+    {
+        try
+        {
+            await fileLogWriterService.WriteLogAsync(logMessage);
+        }
+        catch (Exception ex)
+        {
+            logger.LogWarning(ex, "Failed to write log: {Message}", logMessage);
+        }
     }
 }

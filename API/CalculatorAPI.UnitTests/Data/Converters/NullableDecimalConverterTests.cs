@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using CalculatorAPI.Data.Exceptions;
 using Xunit;
 
 namespace CalculatorAPI.UnitTests.Data.Converters;
@@ -112,5 +113,43 @@ public class NullableDecimalConverterTests
 
         // Check if the output is "null" as expected for a null value
         Assert.Equal("null", result); 
+    }
+    
+    [Fact]
+    public void DefaultConstructor_SetsCorrectMessage()
+    {
+        // Act
+        var exception = new NoContentFoundException();
+
+        // Assert
+        Assert.Equal("No content found.", exception.Message);
+    }
+
+    [Fact]
+    public void Constructor_WithCustomMessage_SetsMessageCorrectly()
+    {
+        // Arrange
+        var customMessage = "Custom message";
+
+        // Act
+        var exception = new NoContentFoundException(customMessage);
+
+        // Assert
+        Assert.Equal(customMessage, exception.Message);
+    }
+
+    [Fact]
+    public void Constructor_WithCustomMessageAndInnerException_SetsCorrectProperties()
+    {
+        // Arrange
+        var customMessage = "Custom message with inner exception";
+        var innerException = new Exception("Inner exception");
+
+        // Act
+        var exception = new NoContentFoundException(customMessage, innerException);
+
+        // Assert
+        Assert.Equal(customMessage, exception.Message);
+        Assert.Equal(innerException, exception.InnerException);
     }
 }

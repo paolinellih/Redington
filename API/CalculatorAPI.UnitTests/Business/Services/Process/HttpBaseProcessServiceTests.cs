@@ -145,8 +145,8 @@ namespace CalculatorAPI.UnitTests.Business.Services.Process
 
             // Assert
             Assert.NotNull(jsonResult);
-            Assert.Contains("\"Result\":0.8", jsonResult);
-            Assert.Contains("\"Successful\":true", jsonResult);
+            Assert.Contains("\"result\":0.8", jsonResult);
+            Assert.Contains("\"successful\":true", jsonResult);
         }
 
         [Fact]

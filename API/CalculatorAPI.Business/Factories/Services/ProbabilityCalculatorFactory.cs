@@ -6,18 +6,11 @@ namespace CalculatorAPI.Business.Factories.Services;
 
 public class ProbabilityCalculatorFactory : IProbabilityCalculatorFactory
 {
-    private readonly Dictionary<string, IProbabilityCalculator> _calculators;
-
-    public ProbabilityCalculatorFactory()
+    private readonly Dictionary<string, IProbabilityCalculator> _calculators = new()
     {
-        // Dynamically register calculators
-        _calculators = new Dictionary<string, IProbabilityCalculator>
-        {
-            { "Combined With", new CombinedWithCalculator() },
-            { "Either", new EitherCalculator() }
-        };
-    }
-
+        { "Combined With", new CombinedWithCalculator() },
+        { "Either", new EitherCalculator() }
+    };
     public IProbabilityCalculator GetCalculator(string name)
     {
         if (_calculators.TryGetValue(name, out var calculator))

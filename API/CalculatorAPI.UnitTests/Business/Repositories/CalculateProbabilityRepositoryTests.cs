@@ -41,21 +41,5 @@ namespace CalculatorAPI.UnitTests.Business.Repositories
                 Assert.Contains(result, x => x.Name == enumValue.ToString());
             }
         }
-
-        [Fact]
-        public void GetProbabilityTypes_ReturnsCorrectValues()
-        {
-            // Arrange
-            var repository = CreateInstance();
-
-            // Act
-            var result = repository.GetProbabilityTypes();
-
-            // Assert
-            foreach (var enumValue in Enum.GetValues(typeof(ProbabilityType)).Cast<ProbabilityType>())
-            {
-                Assert.Contains(result, x => x.Value == (int)enumValue);
-            }
-        }
     }
 }

@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using CalculatorAPI.Data.Interfaces;
 using CalculatorAPI.Data.Requests.Calculator;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -28,9 +28,6 @@ public class CalculateProbabilityRequestValidator : BaseValidator<CalculateProba
     // Custom rule to check if the Type is one of the valid enum values
     private bool BeAValidProbabilityType(string type)
     {
-        if (type == null)
-            return false;
-
         var validValues = EnumHelper.GetEnumValues<ProbabilityType>().Split(',').Select(v => v.Trim()).ToList();
         var typeName = type;
         return validValues.Contains(typeName);

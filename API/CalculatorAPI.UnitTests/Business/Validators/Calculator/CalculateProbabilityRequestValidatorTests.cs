@@ -11,7 +11,7 @@ namespace CalculatorAPI.UnitTests.Business.Validators.Calculator
         {
             A = (decimal?)0.5,
             B = (decimal?)0.7,
-            Type = ProbabilityType.SelectAnOption
+            Type = "Either"
         };
 
         private CalculateProbabilityRequestValidator CreateInstance()
@@ -60,7 +60,7 @@ namespace CalculatorAPI.UnitTests.Business.Validators.Calculator
         [Fact]
         public async Task InvalidTypeValue()
         {
-            Request.Type = (ProbabilityType)999; // Invalid enum value
+            Request.Type = "Not a type"; // Invalid value
             var validator = CreateInstance();
             var validatorResults = await validator.ValidateAsync(Request);
 

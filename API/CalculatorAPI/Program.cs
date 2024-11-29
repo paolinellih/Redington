@@ -39,7 +39,7 @@ builder.Services.AddSwaggerGen();
 // Add general services
 // Logger
 builder.Services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
-builder.Services.AddScoped<ILogFileWriter, FileLogWriterService>();
+builder.Services.AddScoped<IFileLogWriterService, FileLogWriterServiceService>();
 
 // Add repositories
 builder.Services.AddScoped<ICalculateProbabilityRepository, CalculateProbabilityRepository>();
@@ -73,8 +73,9 @@ app.UseCors(x => x
     .AllowCredentials()); // allow credentials
 
 // Default basics up
+app.MapHealthChecks("/health");
 app.MapGet("/whereami", () => Results.Ok($"Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}, MachineName: {Environment.MachineName}, ProcessorCount: {Environment.ProcessorCount}"));
-app.MapGet("/", () => Results.Ok());
+app.MapGet("/", () => Results.Ok("API is running"));
 
 // Global exception handler for JSON deserialization errors
 app.UseExceptionHandler(options =>
