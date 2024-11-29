@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: Consolas, "Courier New", monospace;
+        }
+        code {
+            font-family: Consolas, "Courier New", monospace;
+            color: #c7254e;
+            background-color: #f9f2f4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>README</h1>
+    <h2>Backend: CalculatorAPI</h2>
+    <p>A C# .NET 8 API that provides probability calculation services and other mathematical endpoints.</p>
+    <h3>Prerequisites</h3>
+    <ul>
+        <li>.NET 8 SDK</li>
+        <li>Visual Studio 2022 or any compatible IDE</li>
+    </ul>
+    <h3>Running the API</h3>
+    <pre>
+<code>
+git clone &lt;https://github.com/paolinellih/Redington&gt;
+cd CalculatorAPI
+
+dotnet restore
+dotnet build
+dotnet run
+</code>
+    </pre>
+    <p>The API will start on the following URLs:</p>
+    <ul>
+        <li>HTTP: <code>http://localhost:5000</code></li>
+        <li>HTTPS: <code>https://localhost:44300</code></li>
+    </ul>
+
+    <h2>Frontend: React.js with VITE</h2>
+    <p>A React.js application built using the VITE toolchain.</p>
+    <h3>Prerequisites</h3>
+    <ul>
+        <li>Node.js</li>
+        <li>npm or yarn</li>
+    </ul>
+    <h3>Running the Frontend</h3>
+    <pre>
+<code>
+git clone &lt;repository-url&gt;
+cd frontend
+
+npm install
+npm run dev
+</code>
+    </pre>
+    <p>Open your browser and navigate to the URL provided by the VITE server, typically:</p>
+    <code>http://localhost:5173</code>
+
+    <h2>Connecting Backend and Frontend</h2>
+    <p>Update the backend API base URL in the frontend configuration file, for example:</p>
+    <pre>
+<code>
+export const API_BASE_URL = 'https://localhost:44300';
+</code>
+    </pre>
+</body>
+</html>
