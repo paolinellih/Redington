@@ -12,18 +12,7 @@ using CalculatorAPI.Data.Responses;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("https://0.0.0.0:44300", "http://0.0.0.0:5000"); // Bind to all IPs
-
-// Default HTTPS settings, if not set yet
-builder.WebHost.ConfigureKestrel(serverOptions =>
-{
-    // Listen on the specified port for HTTPS
-    serverOptions.ListenLocalhost(44300, listenOptions =>
-    {
-        listenOptions.UseHttps();  // Ensure HTTPS is enabled
-    });
-});
-
+builder.WebHost.UseUrls("http://0.0.0.0:5000"); // Bind to all IPs
 
 builder.Services.AddCors();
 builder.Services.AddHealthChecks();

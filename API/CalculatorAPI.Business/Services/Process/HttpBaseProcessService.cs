@@ -11,12 +11,12 @@ namespace CalculatorAPI.Business.Services.Process
     public abstract class HttpBaseProcessService<TService> : IHttpProcessService
     {
         protected readonly ILogger<TService> Logger;
-        private readonly IValidator _requestValidator;
+        private readonly IValidator? _requestValidator;
 
         // Constructor allows request validator to be optional
         protected HttpBaseProcessService(
             ILogger<TService> logger,
-            IValidator requestValidator = null)  // Optional
+            IValidator? requestValidator = null)  // Optional
         {
             Logger = logger;
             _requestValidator = requestValidator;
@@ -114,7 +114,7 @@ namespace CalculatorAPI.Business.Services.Process
         public async Task<string> ProcessAndReturnJsonAsync()
         {
             // Call the internal process without a request object (assuming this is handled in the implementation)
-            var processResult = await InternalProcess(null);
+            var processResult = await InternalProcess(null!);
 
             // Use camelCase for JSON property names
             var jsonResult = JsonConvert.SerializeObject(processResult, new JsonSerializerSettings

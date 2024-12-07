@@ -1,0 +1,32 @@
+services:
+  calculator-api:
+    build:
+      context: ./APP
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - my_network
+    environment:
+      ASPNETCORE_URLS: "http://+:5000"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/health" ]
+      interval: 10s
+      retries: 3
+      start_period: 10s
+      timeout: 5s
+
+  react-app:
+    build:
+      context: ./APP
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    networks:
+      - my_network
+    environment:
+      VITE_CALCULATOR_API_URL: "http://localhost:5000"
+
+networks:
+  my_network:
+    driver: bridge
