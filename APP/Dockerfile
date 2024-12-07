@@ -12,7 +12,7 @@ RUN npm install
 
 # Accept build arguments
 # ARG VITE_CALCULATOR_API_URL $VITE_CALCULATOR_API_URL
-ENV VITE_CALCULATOR_API_URL="http://calculator-api:5000"
+ENV VITE_CALCULATOR_API_URL="http://localhost:5000"
 
 # Copy the rest of the application source code
 COPY CalculatorAPP/ .

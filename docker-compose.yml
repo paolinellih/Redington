@@ -1,12 +1,10 @@
 services:
   calculator-api:
     build:
-      context: ./APP
+      context: ./API
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    networks:
-      - my_network
     environment:
       ASPNETCORE_URLS: "http://+:5000"
     healthcheck:
@@ -22,11 +20,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:80"
-    networks:
-      - my_network
-    environment:
-      VITE_CALCULATOR_API_URL: "http://localhost:5000"
-
-networks:
-  my_network:
-    driver: bridge
