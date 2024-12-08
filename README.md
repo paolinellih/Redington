@@ -6,6 +6,6 @@ APP/CalculatorAPP - A frontend application built with React.js using Vite and Je
 
 Please, following the links bellow you can easily run both projects:
 
-[Docker and Docker-Compose](https://github.com/paolinellih/Redington/wiki/Running-the-Project-with-Docker-and-Docker-Compose)
+[Docker and Docker-Compose](https://github.com/paolinellih/Redington/wiki/Docker-and-Docker-Compose)
 
 [Local Development Environment](https://github.com/paolinellih/Redington/wiki/Redington-Project)
