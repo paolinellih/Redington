@@ -1,8 +1,10 @@
-The backend project is a .NET 8-based minimal API designed for high maintainability and scalability. It adheres to SOLID principles, employs clean code practices, and leverages modern design patterns to achieve extensibility, testability, and separation of concerns.
+This repository contains two main projects:
 
-The frontend project is a React.js with Vite component-based structure, with distinct components for encapsulated logic (CalculatorCalculateProbability) and reusable utilities (ValidationErrorsDisplay). React's useState and useEffect hooks.
+API/CalculatorAPI - A backend Minimal APIs built with .NET 8 (including Business, Data, and UnitTest layers) - Designed for high maintainability and scalability. It adheres to SOLID principles, employs clean code practices, and leverages modern design patterns to achieve extensibility, testability, and separation of concerns.
 
-Please choose the way you want to run the project with the links below:
+APP/CalculatorAPP - A frontend application built with React.js using Vite and Jest for the unit tests. - Component-based structure, with distinct components for encapsulated logic (CalculatorCalculateProbability) and reusable utilities (ValidationErrorsDisplay). React's useState and useEffect hooks.
+
+Please, following the links bellow you can easily run both projects:
 
 [Docker and Docker-Compose](https://github.com/paolinellih/Redington/wiki/Running-the-Project-with-Docker-and-Docker-Compose)
 
