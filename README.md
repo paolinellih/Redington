@@ -1,4 +1,15 @@
-This repository contains two main projects:
+This repository contains two main projects API and APP:
+
+```bash
+
+├── API/
+│   ├── CalculatorAPI/          # .NET 8 API Project
+│   ├── CalculatorAPI.Business/ # Business logic layer
+│   ├── CalculatorAPI.Data/     # Data access layer
+│   └── CalculatorAPI.UnitTest/ # Unit tests
+└── APP/
+    └── CalculatorAPP/          # React.js frontend with Vite
+```
 
 API/CalculatorAPI - A backend Minimal APIs built with .NET 8 (including Business, Data, and UnitTest layers) - Designed for high maintainability and scalability. It adheres to SOLID principles, employs clean code practices, and leverages modern design patterns to achieve extensibility, testability, and separation of concerns.
 
